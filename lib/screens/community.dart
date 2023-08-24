@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//provider 상태관리
+
 void main() {
   runApp(const MyApp());
 }
