@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:xml/xml.dart' as xml; // Import the xml package
+import 'package:xml/xml.dart' as xml;
 
 class ApiManager {
   final String apiKey =
@@ -10,16 +10,21 @@ class ApiManager {
     final response = await http
         .get(Uri.parse('$baseUrl/galleryList1?page=$page&serviceKey=$apiKey'));
 
+    print('Response status code: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
     if (response.statusCode == 200) {
       final xmlString = response.body;
-      final document = xml.parse(xmlString); // Parse the XML data
+      final document = xml.XmlDocument.parse(xmlString); // Parse the XML data
       final itemsData = document.findAllElements('item');
 
-      // Convert XML nodes to Map and then to List
       final itemsList = itemsData.map((node) {
-        final itemMap = Map<String, String>.fromEntries(node.children.map(
-            (child) => MapEntry(
-                child.name.local, child.text))); // Convert XML node to a Map
+        final itemMap = <String, String>{};
+        for (var child in node.children) {
+          if (child is xml.XmlElement) {
+            itemMap[child.name.local] = child.text;
+          }
+        }
         return itemMap;
       }).toList();
 
