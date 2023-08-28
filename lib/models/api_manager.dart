@@ -10,9 +10,6 @@ class ApiManager {
     final response = await http
         .get(Uri.parse('$baseUrl/galleryList1?page=$page&serviceKey=$apiKey'));
 
-    print('Response status code: ${response.statusCode}');
-    print('Response body: ${response.body}');
-
     if (response.statusCode == 200) {
       final xmlString = response.body;
       final document = xml.XmlDocument.parse(xmlString); // Parse the XML data
