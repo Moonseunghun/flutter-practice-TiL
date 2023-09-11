@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'screens/image_grid_screen.dart';
+// ignore: unused_import
+import 'package:fluttertil/screens/syncfusion_flutter_charts.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ImageGridScreen(),
+      home: const ChartApp(), // _ChartApp 클래스의 인스턴스를 화면에 표시
     );
   }
 }
