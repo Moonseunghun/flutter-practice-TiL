@@ -37,9 +37,9 @@ class ChartAppState extends State<ChartApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Syncfusion Flutter chart'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Syncfusion Flutter chart'),
+      // ),
       body: Column(
         children: [
           SfCartesianChart(
