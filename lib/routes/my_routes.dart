@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:fluttertil/screens/syncfusion_flutter_charts.dart'; // ChartApp 컴포넌트 파일을 import
+import 'package:fluttertil/screens/syncfusion_flutter_charts.dart';
+import 'package:fluttertil/screens/syncfusion_flutter_calendar.dart';
 
 final List<GoRoute> appRoutes = [
   GoRoute(
@@ -9,9 +10,9 @@ final List<GoRoute> appRoutes = [
     path: '/lib/screens/syncfusion_flutter_charts.dart',
   ),
   GoRoute(
-    builder: (context, state) => Center(child: Text("Page 2")),
+    builder: (context, state) => CalenderApp(),
     name: 'Page 2',
-    path: '/page2',
+    path: '/lib/screens/syncfusion_flutter_calendar.dart',
   ),
   GoRoute(
     builder: (context, state) => Center(child: Text("Page 3")),

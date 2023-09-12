@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:fluttertil/screens/syncfusion_flutter_calendar.dart';
 import 'package:fluttertil/screens/syncfusion_flutter_charts.dart';
+// ignore: unused_import
 import 'package:fluttertil/routes/my_routes.dart';
 
 void main() {
@@ -33,8 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = [
     ChartApp(),
-    const Center(child: Text("Page 1")),
-    const Center(child: Text("Page 2")),
+    CalenderApp(),
     const Center(child: Text("Page 3")),
   ];
 
@@ -58,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'ChartApp',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Page 1',
+            icon: Icon(Icons.calendar_month),
+            label: 'CalendarApp',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
