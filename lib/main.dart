@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ChartApp(), // _ChartApp 클래스의 인스턴스를 화면에 표시
+      home: const ChartApp(),
     );
   }
 }
