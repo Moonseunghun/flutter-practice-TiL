@@ -10,7 +10,7 @@ final List<GoRoute> appRoutes = [
     path: '/lib/screens/syncfusion_flutter_charts.dart',
   ),
   GoRoute(
-    builder: (context, state) => CalenderApp(),
+    builder: (context, state) => CalendarApp(),
     name: 'Page 2',
     path: '/lib/screens/syncfusion_flutter_calendar.dart',
   ),

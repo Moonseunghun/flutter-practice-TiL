@@ -12,33 +12,50 @@ class _CalendarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const CalenderApp(),
+      home: const CalendarApp(),
     );
   }
 }
 
-class CalenderApp extends StatefulWidget {
-  const CalenderApp({Key? key}) : super(key: key);
+class CalendarApp extends StatefulWidget {
+  const CalendarApp({Key? key}) : super(key: key);
 
   @override
-  CalenderAppState createState() => CalenderAppState();
+  CalendarAppState createState() => CalendarAppState();
 }
 
-class CalenderAppState extends State<CalenderApp> {
+class CalendarAppState extends State<CalendarApp> {
+  DateTime? _selectedStartDate;
+  DateTime? _selectedEndDate;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SfCalendar(
-      view: CalendarView.month,
-      onLongPress: (calendarLongPressDetails) {
-        setState(() {
-          print('123');
-        });
-      },
-      dataSource: MeetingDataSource(_getDataSource()),
-      monthViewSettings: const MonthViewSettings(
-          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-    ));
+      body: SfCalendar(
+        view: CalendarView.month,
+        onLongPress: (calendarLongPressDetails) {
+          setState(() {
+            if (_selectedStartDate == null || _selectedEndDate != null) {
+              _selectedStartDate = calendarLongPressDetails.date!;
+              _selectedEndDate = null;
+            } else {
+              _selectedEndDate = calendarLongPressDetails.date!;
+            }
+            print('Selected Start Date: $_selectedStartDate');
+            print('Selected End Date: $_selectedEndDate');
+          });
+        },
+        dataSource: MeetingDataSource(_getDataSource()),
+        monthViewSettings: const MonthViewSettings(
+          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+        ),
+      ),
+    );
   }
 
   List<Meeting> _getDataSource() {
@@ -47,7 +64,7 @@ class CalenderAppState extends State<CalenderApp> {
     final DateTime startTime = DateTime(today.year, today.month, today.day, 9);
     final DateTime endTime = startTime.add(const Duration(hours: 2));
     meetings.add(Meeting(
-        'Conference', startTime, endTime, const Color(0xFF0F8644), false));
+        'work today', startTime, endTime, const Color(0xFF0F8644), false));
     return meetings;
   }
 }
@@ -96,18 +113,18 @@ class MeetingDataSource extends CalendarDataSource {
 class Meeting {
   Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
 
-  /// Event name which is equivalent to subject property of [Appointment].
+  /// Event name which is equivalent to the subject property of [Appointment].
   String eventName;
 
-  /// From which is equivalent to start time property of [Appointment].
+  /// From which is equivalent to the start time property of [Appointment].
   DateTime from;
 
-  /// To which is equivalent to end time property of [Appointment].
+  /// To which is equivalent to the end time property of [Appointment].
   DateTime to;
 
-  /// Background which is equivalent to color property of [Appointment].
+  /// Background which is equivalent to the color property of [Appointment].
   Color background;
 
-  /// IsAllDay which is equivalent to isAllDay property of [Appointment].
+  /// IsAllDay which is equivalent to the isAllDay property of [Appointment].
   bool isAllDay;
 }

@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = [
     ChartApp(),
-    CalenderApp(),
+    CalendarApp(),
     const Center(child: Text("Page 3")),
   ];
 
