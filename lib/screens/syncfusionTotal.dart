@@ -36,6 +36,7 @@ class CombinedAppState extends State<CombinedApp> {
   @override
   void initState() {
     super.initState();
+    // 초기 차트 데이터 생성
     chartData = _SalesData.generateRandomData(
         DateTime(2023, 9, 1), DateTime(2023, 9, 30));
     chartDataForDisplay.addAll(chartData);
@@ -89,6 +90,39 @@ class CombinedAppState extends State<CombinedApp> {
               ],
             ),
           ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: _selectedStartDate != null
+                  ? Colors.green
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              'Selected Start Date: ${_selectedStartDate ?? "selected start date"}',
+              style: TextStyle(
+                fontSize: 16,
+                color: _selectedStartDate != null ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color:
+                  _selectedEndDate != null ? Colors.green : Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              'Selected End Date: ${_selectedEndDate ?? "select your end date"}',
+              style: TextStyle(
+                fontSize: 16,
+                color: _selectedEndDate != null ? Colors.white : Colors.black,
+              ),
+            ),
+          ),
           Expanded(
             flex: 1,
             child: SfCalendar(
@@ -106,6 +140,13 @@ class CombinedAppState extends State<CombinedApp> {
                   updateChartData();
                 });
               },
+              viewHeaderStyle: ViewHeaderStyle(
+                backgroundColor: Colors.blue, // 달력 머리글의 배경색
+              ),
+              selectionDecoration: BoxDecoration(
+                color: Colors.lightBlueAccent, // 선택한 날짜의 배경색
+                shape: BoxShape.circle, // 선택한 날짜의 모양 (원형)
+              ),
               dataSource: MeetingDataSource(_getDataSource()),
               monthViewSettings: const MonthViewSettings(
                 appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
