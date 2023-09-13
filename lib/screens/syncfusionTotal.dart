@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -26,14 +27,7 @@ class CombinedApp extends StatefulWidget {
 }
 
 class CombinedAppState extends State<CombinedApp> {
-  List<_SalesData> chartData = [
-    _SalesData(DateTime(2023, 9, 25), 35),
-    _SalesData(DateTime(2023, 9, 13), 28),
-    _SalesData(DateTime(2023, 9, 14), 34),
-    _SalesData(DateTime(2023, 9, 15), 32),
-    _SalesData(DateTime(2023, 9, 16), 40),
-  ];
-
+  List<_SalesData> chartData = [];
   List<_SalesData> chartDataForDisplay = [];
 
   DateTime? _selectedStartDate;
@@ -42,6 +36,8 @@ class CombinedAppState extends State<CombinedApp> {
   @override
   void initState() {
     super.initState();
+    chartData = _SalesData.generateRandomData(
+        DateTime(2023, 9, 1), DateTime(2023, 9, 30));
     chartDataForDisplay.addAll(chartData);
   }
 
@@ -49,20 +45,25 @@ class CombinedAppState extends State<CombinedApp> {
     if (_selectedStartDate == null || _selectedEndDate == null) {
       return chartData;
     } else {
-      final filteredData = chartData
-          .where((data) =>
-              data.year.isAfter(_selectedStartDate!) &&
-              data.year.isBefore(_selectedEndDate!))
-          .toList();
+      final filteredData = chartData.where((data) {
+        final DateTime dataDate = data.year;
+        return dataDate.isAfter(_selectedStartDate!) &&
+            dataDate.isBefore(_selectedEndDate!);
+      }).toList();
       return filteredData;
     }
   }
 
   void updateChartData() {
-    final filteredData = getFilteredChartData();
-    setState(() {
-      chartDataForDisplay = filteredData;
-    });
+    if (_selectedStartDate != null && _selectedEndDate != null) {
+      final startDate = _selectedStartDate!;
+      final endDate = _selectedEndDate!.add(Duration(days: 1));
+      final filteredData = _SalesData.generateRandomData(startDate, endDate);
+      setState(() {
+        chartDataForDisplay.clear();
+        chartDataForDisplay.addAll(filteredData);
+      });
+    }
   }
 
   @override
@@ -132,6 +133,18 @@ class _SalesData {
 
   final DateTime year;
   final double sales;
+
+  static List<_SalesData> generateRandomData(
+      DateTime startDate, DateTime endDate) {
+    final random = Random();
+    final data = <_SalesData>[];
+    for (var date = startDate;
+        date.isBefore(endDate);
+        date = date.add(Duration(days: 1))) {
+      data.add(_SalesData(date, random.nextDouble() * 100));
+    }
+    return data;
+  }
 }
 
 class MeetingDataSource extends CalendarDataSource {
@@ -170,7 +183,6 @@ class MeetingDataSource extends CalendarDataSource {
     if (meeting is Meeting) {
       meetingData = meeting;
     }
-
     return meetingData;
   }
 }
