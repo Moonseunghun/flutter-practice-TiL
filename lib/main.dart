@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertil/screens/syncfusionTotal.dart';
 // ignore: unused_import
 import 'package:fluttertil/screens/syncfusion_flutter_calendar.dart';
 import 'package:fluttertil/screens/syncfusion_flutter_charts.dart';
@@ -34,11 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    ChartApp(),
-    CalendarApp(),
-    const Center(child: Text("Page 3")),
-  ];
+  final List<Widget> _pages = [ChartApp(), CalendarApp(), CombinedApp()];
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: 'Page 2',
+            label: 'TotalApp',
           ),
         ],
       ),

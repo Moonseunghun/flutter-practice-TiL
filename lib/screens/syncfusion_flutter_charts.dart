@@ -57,21 +57,21 @@ class ChartAppState extends State<ChartApp> {
               ),
             ],
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SfSparkLineChart.custom(
-                trackball: const SparkChartTrackball(
-                    activationMode: SparkChartActivationMode.tap),
-                marker: const SparkChartMarker(
-                    displayMode: SparkChartMarkerDisplayMode.all),
-                labelDisplayMode: SparkChartLabelDisplayMode.all,
-                xValueMapper: (int index) => data[index].year,
-                yValueMapper: (int index) => data[index].sales,
-                dataCount: 5,
-              ),
-            ),
-          ),
+          // Expanded(
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: SfSparkLineChart.custom(
+          //       trackball: const SparkChartTrackball(
+          //           activationMode: SparkChartActivationMode.tap),
+          //       marker: const SparkChartMarker(
+          //           displayMode: SparkChartMarkerDisplayMode.all),
+          //       labelDisplayMode: SparkChartLabelDisplayMode.all,
+          //       xValueMapper: (int index) => data[index].year,
+          //       yValueMapper: (int index) => data[index].sales,
+          //       dataCount: 5,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
