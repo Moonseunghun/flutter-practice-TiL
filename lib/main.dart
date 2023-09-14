@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [ChartApp(), CalendarApp(), CombinedApp()];
+  final List<Widget> _pages = [MyAppHome(), CalendarApp(), CombinedApp()];
 
   @override
   Widget build(BuildContext context) {

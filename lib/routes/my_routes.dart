@@ -6,7 +6,7 @@ import 'package:fluttertil/screens/syncfusion_flutter_calendar.dart';
 
 final List<GoRoute> appRoutes = [
   GoRoute(
-    builder: (context, state) => ChartApp(),
+    builder: (context, state) => MyAppHome(),
     name: 'Page 1',
     path: '/lib/screens/syncfusion_flutter_charts.dart',
   ),
