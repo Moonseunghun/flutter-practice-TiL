@@ -65,6 +65,15 @@ class CalendarAppState extends State<CalendarApp> {
     final DateTime endTime = startTime.add(const Duration(hours: 2));
     meetings.add(Meeting(
         'work today', startTime, endTime, const Color(0xFF0F8644), false));
+
+    // 선택한 기간에 해당하는 회의를 생성하여 추가합니다.
+    if (_selectedStartDate != null && _selectedEndDate != null) {
+      final DateTime selectedStartTime = _selectedStartDate!;
+      final DateTime selectedEndTime = _selectedEndDate!;
+      meetings.add(Meeting('selected period', selectedStartTime,
+          selectedEndTime, Colors.blue, false));
+    }
+
     return meetings;
   }
 }

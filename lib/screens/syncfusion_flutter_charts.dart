@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 void main() {
-  runApp(const _ChartApp()); // _ChartApp 클래스를 직접 runApp에 전달
+  runApp(const _ChartApp());
 }
 
 class _ChartApp extends StatelessWidget {
@@ -12,7 +11,7 @@ class _ChartApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.grey),
       home: const ChartApp(),
     );
   }
@@ -26,61 +25,56 @@ class ChartApp extends StatefulWidget {
 }
 
 class ChartAppState extends State<ChartApp> {
-  List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
+  List<_DailyScoreData> data = [
+    _DailyScoreData('1', 90, 85, 78),
+    _DailyScoreData('2', 88, 84, 76),
+    _DailyScoreData('3', 92, 87, 79),
+    _DailyScoreData('4', 89, 86, 77),
+    _DailyScoreData('5', 94, 89, 82),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Syncfusion Flutter chart'),
-      // ),
-      body: Column(
-        children: [
-          SfCartesianChart(
-            primaryXAxis: CategoryAxis(),
-            title: ChartTitle(text: 'Half yearly sales analysis'),
-            legend: const Legend(isVisible: true),
-            tooltipBehavior: TooltipBehavior(enable: true),
-            series: <ChartSeries<_SalesData, String>>[
-              LineSeries<_SalesData, String>(
-                dataSource: data,
-                xValueMapper: (_SalesData sales, _) => sales.year,
-                yValueMapper: (_SalesData sales, _) => sales.sales,
-                name: 'Sales',
-                dataLabelSettings: const DataLabelSettings(isVisible: true),
-              ),
-            ],
+      body: SfCartesianChart(
+        primaryXAxis: CategoryAxis(),
+        title: ChartTitle(text: 'Daily Scores'),
+        legend: const Legend(isVisible: true),
+        tooltipBehavior: TooltipBehavior(enable: true),
+        series: <ChartSeries<_DailyScoreData, String>>[
+          LineSeries<_DailyScoreData, String>(
+            dataSource: data,
+            xValueMapper: (_DailyScoreData score, _) => score.day,
+            yValueMapper: (_DailyScoreData score, _) => score.koreanScore,
+            name: '국어',
+            dataLabelSettings: const DataLabelSettings(isVisible: true),
           ),
-          // Expanded(
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(8.0),
-          //     child: SfSparkLineChart.custom(
-          //       trackball: const SparkChartTrackball(
-          //           activationMode: SparkChartActivationMode.tap),
-          //       marker: const SparkChartMarker(
-          //           displayMode: SparkChartMarkerDisplayMode.all),
-          //       labelDisplayMode: SparkChartLabelDisplayMode.all,
-          //       xValueMapper: (int index) => data[index].year,
-          //       yValueMapper: (int index) => data[index].sales,
-          //       dataCount: 5,
-          //     ),
-          //   ),
-          // ),
+          LineSeries<_DailyScoreData, String>(
+            dataSource: data,
+            xValueMapper: (_DailyScoreData score, _) => score.day,
+            yValueMapper: (_DailyScoreData score, _) => score.englishScore,
+            name: '영어',
+            dataLabelSettings: const DataLabelSettings(isVisible: true),
+          ),
+          LineSeries<_DailyScoreData, String>(
+            dataSource: data,
+            xValueMapper: (_DailyScoreData score, _) => score.day,
+            yValueMapper: (_DailyScoreData score, _) => score.mathScore,
+            name: '수학',
+            dataLabelSettings: const DataLabelSettings(isVisible: true),
+          ),
         ],
       ),
     );
   }
 }
 
-class _SalesData {
-  _SalesData(this.year, this.sales);
+class _DailyScoreData {
+  _DailyScoreData(
+      this.day, this.koreanScore, this.englishScore, this.mathScore);
 
-  final String year;
-  final double sales;
+  final String day;
+  final double koreanScore;
+  final double englishScore;
+  final double mathScore;
 }
