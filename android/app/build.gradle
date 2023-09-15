@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+=======
+>>>>>>> 4bf21e73cd0ed74fa0451af4f8a03366f7abef85
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -12,6 +15,14 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+<<<<<<< HEAD
+=======
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+>>>>>>> 4bf21e73cd0ed74fa0451af4f8a03366f7abef85
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
@@ -22,6 +33,16 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+<<<<<<< HEAD
+=======
+apply plugin: 'com.android.application'
+// START: FlutterFire Configuration
+apply plugin: 'com.google.gms.google-services'
+// END: FlutterFire Configuration
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+>>>>>>> 4bf21e73cd0ed74fa0451af4f8a03366f7abef85
 android {
     namespace "com.example.fluttertil"
     compileSdkVersion flutter.compileSdkVersion
@@ -64,4 +85,10 @@ flutter {
     source '../..'
 }
 
+<<<<<<< HEAD
 dependencies {}
+=======
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+>>>>>>> 4bf21e73cd0ed74fa0451af4f8a03366f7abef85

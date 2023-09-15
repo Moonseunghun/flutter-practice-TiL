@@ -12,11 +12,11 @@ final List<GoRoute> appRoutes = [
     name: 'Login',
     path: '/lib/screens/login_auth.dart',
   ),
-  GoRoute(
-    builder: (context, state) => MyAppHome(),
-    name: 'Page 1',
-    path: '/lib/screens/syncfusion_flutter_charts.dart',
-  ),
+ GoRoute(
+  builder: (context, state) => MyAppHome(),
+  name: 'Page 1',
+  path: '/lib/screens/syncfusion_flutter_charts.dart',
+ ),
   GoRoute(
     builder: (context, state) => CalendarApp(),
     name: 'Page 2',

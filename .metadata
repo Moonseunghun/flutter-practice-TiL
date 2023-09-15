@@ -6,7 +6,6 @@
 version:
   revision: "367f9ea16bfae1ca451b9cc27c1366870b187ae2"
   channel: "stable"
-
 project_type: app
 
 # Tracks metadata for the flutter migrate command
@@ -33,7 +32,6 @@ migration:
     - platform: windows
       create_revision: 367f9ea16bfae1ca451b9cc27c1366870b187ae2
       base_revision: 367f9ea16bfae1ca451b9cc27c1366870b187ae2
-
   # User provided section
 
   # List of Local paths (relative to this file) that should be
