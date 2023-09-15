@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BottomNavBar Example',
+      title: 'BottomNavBar',
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
